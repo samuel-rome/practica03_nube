@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CRUD Pacientes</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      margin-top: 50px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #007bff;
+      margin-bottom: 30px;
+    }
+
+    .table {
+      margin-top: 20px;
+    }
+
+    .table td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .img-thumbnail {
+      max-height: 200px;
+      max-width: 200px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .img-thumbnail:hover {
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+    }
+
+    .btn-edit {
+      background-color: #ffc107;
+      border-color: #ffc107;
+      color: #fff;
+      margin-right: 5px;
+    }
+
+    .btn-edit:hover {
+      background-color: #ffca2d;
+      border-color: #ffca2d;
+      color: #fff;
+    }
+
+    .btn-delete {
+      background-color: #dc3545;
+      border-color: #dc3545;
+      color: #fff;
+    }
+
+    .btn-delete:hover {
+      background-color: #e12a3a;
+      border-color: #e12a3a;
+      color: #fff;
+    }
+
+    .btn-add {
+      background-color: #28a745;
+      border-color: #28a745;
+      color: #fff;
+    }
+
+    .btn-add:hover {
+      background-color: #2db74f;
+      border-color: #2db74f;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-4">Listado de Pacientes</h1>
+    <table class="table mt-4">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Apellidos</th>
+          <th>Nombres</th>
+          <th>Sexo</th>
+          <th>Especialidad</th>
+          <th>Foto</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% pacientes.forEach(paciente => { %>
+          <tr>
+            <td><%= paciente.idpaciente %></td>
+            <td><%= paciente.apellidos %></td>
+            <td><%= paciente.nombres %></td>
+            <td><%= paciente.sexo %></td>
+            <td><%= paciente.especialidad %></td>
+            <td><img src="<%= paciente.foto %>" height="160" width="160" class="img-thumbnail"></td>
+            <td>
+              <div class="d-flex justify-content-center">
+                <form action="/pacientes/<%= paciente.idpaciente %>/editar" method="GET">
+                  <button type="submit" class="btn btn-edit btn-sm">Editar</button>
+                </form>
+                <form action="/pacientes/<%= paciente.idpaciente %>/eliminar" method="POST">
+                  <button type="submit" class="btn btn-delete btn-sm">Eliminar</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    <a href="/pacientes/nuevo" class="btn btn-add">Agregar Paciente</a>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
